@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'uk.edwinek.hackthehive.Hacker'
+
+ext {
+    apacheHttpClientVersion = '4.5.6'
+    jacksonVersion = '2.9.6'
+    junitVersion = '5.2.0'
+    mockitoVersion = '2.18.3'
+    slf4jVersion = '2.11.1'
+    springVersion = '5.1.0.RELEASE'
+}
+
+dependencies {
+    compile "org.apache.httpcomponents:httpclient:${project.apacheHttpClientVersion}"
+    compile "org.apache.logging.log4j:log4j-slf4j18-impl:${project.slf4jVersion}"
+    compile "com.fasterxml.jackson.core:jackson-databind:${project.jacksonVersion}"
+    compile "org.springframework:spring-context:${project.springVersion}"
+    compile "org.springframework:spring-core:${project.springVersion}"
+    compile "org.springframework:spring-web:${project.springVersion}"
+    testCompile "org.springframework:spring-test:${project.springVersion}"
+    testCompile "org.junit.jupiter:junit-jupiter-api:${project.junitVersion}"
+    testCompile "org.junit.jupiter:junit-jupiter-engine:${project.junitVersion}"
+    testCompile "org.mockito:mockito-core:${project.mockitoVersion}"
+}
+
+repositories {
+    jcenter()
+}
+
+test {
+    useJUnitPlatform()
+}
