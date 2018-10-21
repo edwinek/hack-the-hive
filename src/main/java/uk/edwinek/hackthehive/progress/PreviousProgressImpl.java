@@ -2,6 +2,7 @@ package uk.edwinek.hackthehive.progress;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -22,7 +23,8 @@ public class PreviousProgressImpl implements PreviousProgress {
     private final Path outputFile;
     private final String userName;
 
-    PreviousProgressImpl(final Path outputFile, final String userName) {
+    PreviousProgressImpl(@Value("${progress.filename}") final Path outputFile,
+                         @Value("${progress.username}") final String userName) {
         this.outputFile = outputFile;
         this.userName = userName;
     }

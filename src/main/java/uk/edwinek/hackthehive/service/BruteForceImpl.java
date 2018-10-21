@@ -1,5 +1,7 @@
 package uk.edwinek.hackthehive.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.edwinek.hackthehive.client.HiveClient;
 import uk.edwinek.hackthehive.generator.PermutationGenerator;
@@ -17,8 +19,13 @@ public class BruteForceImpl implements BruteForce {
     private final PreviousProgress previousProgress;
     private final String userToHack;
 
-    BruteForceImpl(final HiveClient hiveClient, final PermutationGenerator permutationGenerator,
-                   final PreviousProgress previousProgress, final String userToHack) {
+    @Autowired
+    BruteForceImpl(
+            final HiveClient hiveClient,
+            final PermutationGenerator permutationGenerator,
+            final PreviousProgress previousProgress,
+            @Value("${service.username}") final String userToHack
+    ) {
         this.hiveClient = hiveClient;
         this.permutationGenerator = permutationGenerator;
         this.previousProgress = previousProgress;

@@ -1,5 +1,6 @@
 package uk.edwinek.hackthehive.generator;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashSet;
@@ -12,7 +13,10 @@ public class PermutationGeneratorImpl implements PermutationGenerator {
     private int length;
     private int[] currentPermutation;
 
-    PermutationGeneratorImpl(final String alphabet, final int length) {
+    PermutationGeneratorImpl(
+            @Value("${generator.alphabet}") final String alphabet,
+            @Value("${generator.length}") final int length
+    ) {
         this.alphabetChars = alphabet.toCharArray();
         this.length = length;
     }
